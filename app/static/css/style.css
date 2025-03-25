@@ -1,0 +1,59 @@
+@import 'variables.css';
+@import 'components/sidebar.css';
+@import 'components/table.css';
+@import 'components/button.css';
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+html{
+    line-height: 18px;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    list-style: none;
+    color: var(--text-color);
+}
+
+body{
+    background-color: var(--page-bg);
+    font-family: "Roboto", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    font-size: 16px;
+    font-weight: 400;
+    color: var(--text-color);
+
+}
+
+.container-wrapper {
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.main-content-container {
+    align-items: start;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    height: 100%;
+    padding: 1rem;
+    /* Adicione overflow para conter o conteúdo */
+    overflow: auto;
+}
+
+.main-content {
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+    width: 100%;
+    height: 100%;
+    border-radius: 1rem;
+    border: 1px solid var(--border-color);
+    /* Adicione isso para evitar que o conteúdo estoure */
+    min-width: 0;
+}

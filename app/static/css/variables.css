@@ -1,0 +1,15 @@
+:root {
+    --text-color: #1c1c1c;
+    --header-color: #3C3C3C;
+    --page-bg: #FBF9F7;
+    --base-blue: #0083CA;
+    --base-blue-darker: #0071ae;
+    --border-color: #D6D6D6;
+    --md-shadow: 0 0 12px rgba(0,0,0,0.2);
+    --sm-shadow: 0 0 5px rgba(0,0,0,0.2);
+    --xs-shadow: 0 0 2px rgba(0,0,0,0.2);
+    --base-red: #BB2A33;
+    --base-transition: all .3s ease-in-out;
+    --even-row-color: #F0F0F0;
+    --text-sm: .875rem;
+}

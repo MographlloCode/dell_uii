@@ -1,0 +1,51 @@
+<table class="table-container">
+    <thead>
+        <tr id="table-headers">
+            <th>
+                <div class="table-header-content">
+                    <span>Head 01</span>
+                    <div class="th-actions">
+                        <!-- <button class="table-head-btn" type="button">
+                            <i class='bx bx-filter-alt'></i>
+                        </button> -->
+                        <button class="table-head-btn" type="button">
+                            <i class='bx bx-sort-alt-2' ></i>
+                        </button>
+                    </div>
+                </div>
+            </th>
+
+        </tr>
+        <!-- <tr id="table-filters">
+            <th>
+                <input type="search" placeholder="Search for {}..." class="header-filter-input">
+            </th>
+        </tr> -->
+    </thead>
+    <tbody>
+        <tr>
+            {% set data_type = "text" %}
+            {% include "components/table/parts/data-cell.html" %}
+        </tr>
+        <tr>
+            {% set data_type = "tag" %}
+            {% include "components/table/parts/data-cell.html"%}
+        </tr>
+        <tr>
+            {% set data_type = "select" %}
+            {% include "components/table/parts/data-cell.html"%}
+        </tr>
+        <tr>
+            {% set data_type = "textbox" %}
+            {% include "components/table/parts/data-cell.html"%}
+        </tr>
+        <tr>
+            {% set data_type = "date" %}
+            {% include "components/table/parts/data-cell.html"%}
+        </tr>
+        <tr>
+            {% set data_type = "decision" %}
+            {% include "components/table/parts/data-cell.html"%}
+        </tr>
+    </tbody>
+</table>

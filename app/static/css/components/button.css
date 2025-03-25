@@ -1,0 +1,12 @@
+.base-btn {
+    background: var(--base-blue);
+    padding: .5rem 1.25rem;
+    border-radius: .5rem;
+    color: white;
+    font-weight: 600;
+    transition: var(--base-transition);
+
+    &:hover {
+        background: var(--base-blue-darker);
+    }
+}

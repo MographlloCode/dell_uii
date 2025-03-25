@@ -1,0 +1,20 @@
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}"> 
+
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+    <!-- Dell Design System -->
+    <link rel="stylesheet" href="https://dds.dell.com/components/2.46.2/css/dds-icons.css" />
+</head>
+<body class="container-wrapper dds__body-2">
+    {% include 'components/sidebar.html' %}
+    <main class="main-content-container">
+        <div class="main-content">
+            {% block content%}
+            {% endblock %}
+        </div>
+    </main>
+</body>

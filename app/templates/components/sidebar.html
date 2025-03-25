@@ -1,0 +1,179 @@
+<nav class="sidebar-wrapper open">
+    <header>
+        <a style="display: flex; gap: .5rem;" href="/">
+            <img src="{{ url_for('static', filename='images/dell_logo.svg') }}" alt="Dell Logo" width="36">
+        </a>
+        <button title="dock-btn" type="button" id="dock-sidebar-btn"><i class='bx bxs-chevron-left sidebar-btn-icon arrow-dock'></i></button>
+    </header>
+    <main>
+        <ul class="sidebar-menu-list">
+            {% for menu in context.sidebar_menu %}
+                {% if not menu.is_dropdown %}
+                <!-- Single menu item --> 
+                <a href='{{ menu.menu_link }}'>
+                    <li  id='1'>
+                        <div class="menu-item-headline">
+                            <div>
+                                <i class="bx {{menu.menu_icon}} sidebar-menu-icon"></i>
+                                <p  class="menu-link menu-item-label">{{ menu.menu_label }}</p>
+                            </div>
+                        </div>
+                    </li>
+                </a>
+                {% else %}
+                <!-- Dropdown menu block --> 
+                <li class="menu-items-li">
+                    <div class="menu-item-headline">
+                        <div>
+                            <i class="bx {{menu.menu_icon}} sidebar-menu-icon"></i>
+                            <p class="menu-item-label">{{ menu.menu_label }}</p>
+                        </div>
+                        <button title="{{menu.menu_label}}-dropwdown-btn" type="btn" data-menu-label="{{ menu.menu_label }}" class="dropdown-btn">
+                            <i class='bx bx-chevron-down'></i>
+                        </button>
+                    </div>
+                    <div class="submenu-list submenu-closed">
+                        {% for submenu in menu.menu_items %}
+                        <a href="{{ submenu.menu_link }}" class="menu-link">
+                                <p class="menu-link">{{ submenu.menu_label }}</p>
+                        </a>
+                        {% endfor %}
+                    </div>
+                </li>
+                {% endif %}
+            {% endfor %}
+        </ul>
+    </main>
+    <footer>
+        <div class="user-detail-container" id="user-detail">
+            <i class='bx bxs-user-circle user-profile-icon'></i>
+            <div class="user-details">
+                <h2 class="user-name">Gustavo</h2>
+                <p class="user-role">Admin</p>
+            </div>
+        </div>
+        <button title="dock-btn" type="button" id="logout-btn"><i class='bx bx-log-out sidebar-btn-icon'></i></button>
+    </footer>
+</nav>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const sidebar = document.querySelector(".sidebar-wrapper");
+        const dockButton = document.getElementById("dock-sidebar-btn");
+        const userDetail = document.getElementById("user-detail");
+        const menuItems = document.querySelectorAll(".menu-item-headline div p");
+        const menuItemsLI = document.querySelectorAll(".menu-items-li");
+        const submenus = document.querySelectorAll(".submenu-list");
+        const dropSubmenuButtons = document.querySelectorAll("button[title$='-dropwdown-btn']")
+
+        function toggleClass(element, className) {
+            element.classList.toggle(className);
+            console.log("Togglou")
+        }
+
+        function toggleSidebar() {
+            dockButton.addEventListener("click", () => {
+                const isOpen = sidebar.classList.contains("open");
+
+                toggleMenuItems(isOpen)
+                toggleSubmenuDropdownButtons(isOpen)
+                toggleSubmenus(isOpen)
+
+                toggleClass(sidebar, "open");
+                toggleClass(sidebar, "closed");
+                toggleClass(userDetail, "closed");
+            });
+        }
+
+        function toggleSubmenuDropdownButtons(isOpen) {
+            if (isOpen) {
+                dropSubmenuButtons.forEach(subButton => subButton.classList.add("sidebar-closed")); 
+                dropSubmenuButtons.forEach(subButton => subButton.classList.add("dwn-btn-open"));
+            } else {
+                dropSubmenuButtons.forEach(subButton => subButton.classList.remove("sidebar-closed"));
+                dropSubmenuButtons.forEach(subButton => subButton.classList.remove("dwn-btn-open"));
+            }
+        }
+
+        function toggleSubmenus(isOpen) {
+            if (isOpen) {
+                submenus.forEach(submenu => submenu.classList.add("sidebar-closed"));
+                submenus.forEach(item => item.classList.add("submenu-closed"));
+            } else {
+                submenus.forEach(item => item.classList.remove("sidebar-closed"));
+                submenus.forEach(item => item.classList.remove("submenu-open"));
+            }
+        }
+
+        function toggleMenuItems(isOpen) {
+            if (isOpen) {
+                menuItems.forEach(item => item.classList.add("sidebar-closed"));
+            } else {
+                menuItems.forEach(item => item.classList.remove("sidebar-closed"));
+            }
+        }
+
+        menuItemsLI.forEach(menuItem => {
+            menuItem.addEventListener("click", function() {
+                const isOpen = sidebar.classList.contains("open");
+
+                const menuItemSubmenu = this.querySelector(".submenu-list")
+                const menuItemDropdownBtn = this.querySelector(".dropdown-btn")
+                const labels = document.querySelectorAll(".menu-item-label");
+
+                if(isOpen) {
+                    // Toggle Submenu
+                    if(menuItemSubmenu.classList.contains("submenu-closed")){
+                        menuItemSubmenu.classList.remove("submenu-closed")
+                        menuItemSubmenu.classList.add("submenu-open")
+                    } else {
+                        menuItemSubmenu.classList.remove("submenu-open")
+                        menuItemSubmenu.classList.add("submenu-closed")
+                    }
+
+                    // Toggle Drodpwon Button
+                    toggleClass(menuItemDropdownBtn, "dwn-btn-open")
+
+                    // Show all labels
+                    labels.forEach(label => {
+                        if(label.classList.contains("sidebar-closed")) {
+                            label.classList.remove("sidebar-closed")
+                        }
+                    })
+                } else {
+                    // Open Sidebar
+                    sidebar.classList.remove("closed")
+                    sidebar.classList.add("open")
+
+                    // Show Dropdown Buttons and remove the behavior of open if present
+                    dropSubmenuButtons.forEach(button => {
+                        button.classList.remove("sidebar-closed")
+
+                        if(button.classList.contains('dwn-btn-open')) {
+                            button.classList.remove('dwn-btn-open')
+                        }
+                    })
+
+                    // Add open behavior to current dropdown button
+                    if(!menuItemDropdownBtn.classList.contains("dwn-btn-open")) {
+                        menuItemDropdownBtn.classList.add("dwn-btn-open")
+                    }
+
+                    // Show all labels
+                    labels.forEach(label => {
+                        toggleClass(label, "sidebar-closed")
+                    })
+
+                    // Remove sidebar closed behavior and toggle Submenu
+                    toggleClass(menuItemSubmenu, "sidebar-closed")
+                    if(menuItemSubmenu.classList.contains("submenu-closed")) {
+                        menuItemSubmenu.classList.remove("submenu-closed")
+                        menuItemSubmenu.classList.add("submenu-open")
+                    }
+                }
+            })
+        })
+
+        toggleSidebar()
+
+    });
+</script>

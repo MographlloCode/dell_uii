@@ -1,0 +1,11 @@
+{% extends 'base/base.html' %}
+{% block content %}
+{% include 'components/table/parts/table-header.html' %}
+{% include 'components/table/parts/table-actions.html' %}
+<div class="table-wrapper">
+    <div class="table-scroll">
+        {% include 'components/table/table.html' %}
+    </div>
+</div>
+{% include 'components/table/parts/table-footer.html' %}
+{% endblock %}
