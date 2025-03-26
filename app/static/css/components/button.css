@@ -10,3 +10,41 @@
         background: var(--base-blue-darker);
     }
 }
+
+.data-cell-btns {
+    display: flex;
+    gap: .5rem;
+
+    .action-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: white;
+        border: none;
+        cursor: pointer;
+        border-radius: .5rem;
+        box-shadow: var(--xs-shadow);
+        transition: var(--base-transition);
+        min-width: 32px;
+        min-height: 32px;
+        gap: .5rem;
+        
+        i {
+            font-size: 1rem;
+        }
+        
+        &:hover {
+            box-shadow: var(--sm-shadow);
+        }
+
+        .accept {
+            color: var(--base-blue);
+            font-weight: 600;
+        }
+
+        .reject {
+            color: var(--base-red);
+            font-weight: 600;
+        }
+    }
+}

@@ -1,49 +1,70 @@
 <table class="table-container">
     <thead>
         <tr id="table-headers">
-            <th>
-                <div class="table-header-content">
-                    <span>Head 01</span>
-                    <div class="th-actions">
-                        <!-- <button class="table-head-btn" type="button">
-                            <i class='bx bx-filter-alt'></i>
-                        </button> -->
-                        <button class="table-head-btn" type="button">
-                            <i class='bx bx-sort-alt-2' ></i>
-                        </button>
-                    </div>
-                </div>
-            </th>
-
+            {% include "components/table/parts/grid/header-component.html" %}
+            {% include "components/table/parts/grid/header-component.html" %}
+            {% include "components/table/parts/grid/header-component.html" %}
+            {% include "components/table/parts/grid/header-component.html" %}
+            {% include "components/table/parts/grid/header-component.html" %}
+            {% include "components/table/parts/grid/header-component.html" %}
+            {% include "components/table/parts/grid/header-component.html" %}
+            {% include "components/table/parts/grid/header-component.html" %}
+            {% include "components/table/parts/grid/header-component.html" %}
+            {% include "components/table/parts/grid/header-component.html" %}
         </tr>
-        <!-- <tr id="table-filters">
-            <th>
-                <input type="search" placeholder="Search for {}..." class="header-filter-input">
-            </th>
-        </tr> -->
+        <tr id="table-filters">
+            {% include "components/table/parts/grid/header-filter.html" %}
+            {% include "components/table/parts/grid/header-filter.html" %}
+            {% include "components/table/parts/grid/header-filter.html" %}
+            {% include "components/table/parts/grid/header-filter.html" %}
+            {% include "components/table/parts/grid/header-filter.html" %}
+            {% include "components/table/parts/grid/header-filter.html" %}
+            {% include "components/table/parts/grid/header-filter.html" %}
+            {% include "components/table/parts/grid/header-filter.html" %}
+            {% include "components/table/parts/grid/header-filter.html" %}
+            {% include "components/table/parts/grid/header-filter.html" %}
+        </tr>
     </thead>
     <tbody>
         <tr>
             {% set data_type = "text" %}
             {% include "components/table/parts/data-cell.html" %}
-        </tr>
-        <tr>
-            {% set data_type = "tag" %}
-            {% include "components/table/parts/data-cell.html"%}
-        </tr>
-        <tr>
-            {% set data_type = "select" %}
-            {% include "components/table/parts/data-cell.html"%}
-        </tr>
-        <tr>
+
             {% set data_type = "textbox" %}
             {% include "components/table/parts/data-cell.html"%}
-        </tr>
-        <tr>
+
             {% set data_type = "date" %}
             {% include "components/table/parts/data-cell.html"%}
-        </tr>
-        <tr>
+
+            {% set data_type = "select" %}
+            {% include "components/table/parts/data-cell.html"%}
+
+            <!-- Wheat Tag -->
+            {% set data_type = "tag" %}
+            {% set tag_type = "wheat" %}
+            {% include "components/table/parts/data-cell.html"%}
+
+            <!-- Lighter Tag -->
+            {% set data_type = "tag" %}
+            {% set tag_type = "lighter" %}
+            {% include "components/table/parts/data-cell.html"%}
+
+            <!-- Green Tag -->
+            {% set data_type = "tag" %}
+            {% set tag_type = "green" %}
+            {% include "components/table/parts/data-cell.html"%}
+
+            <!-- Red Tag -->
+            {% set data_type = "tag" %}
+            {% set tag_type = "red" %}
+            {% include "components/table/parts/data-cell.html"%}
+
+            <!-- Blue Tag -->
+            {% set data_type = "tag" %}
+            {% set tag_type = "blue" %}
+            {% include "components/table/parts/data-cell.html"%}
+            
+            <!-- Tags -->
             {% set data_type = "decision" %}
             {% include "components/table/parts/data-cell.html"%}
         </tr>

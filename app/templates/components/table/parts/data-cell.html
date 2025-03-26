@@ -1,13 +1,40 @@
 {% if data_type=="text" %}
     <td>Text data</td>
 {% elif data_type=="tag" %}
-    <td>Tag data</td>
+    <td>
+        {% if tag_type=="wheat" %}
+            <div class="tag tag-wheat">teste</div>
+        {% elif tag_type=="green" %}
+            <div class="tag tag-green">teste</div>
+        {% elif tag_type=="red" %}
+            <div class="tag tag-red">teste</div>
+        {% elif tag_type=="lighter" %}
+            <div class="tag tag-lighter">teste</div>
+        {% elif tag_type=="blue" %}
+            <div class="tag tag-blue">teste</div>
+        {% endif %}
+    </td>
 {% elif data_type=="select" %}
-    <td>Select data</td>
+    <td>
+        <select>
+            <option>Teste</option>
+        </select>
+    </td>
 {% elif data_type=="textbox" %}
-    <td>Textbox data</td>
+    <td>
+        <textarea rows="2" cols="32"></textarea>
+    </td>
 {% elif data_type=="date" %}
-    <td>Date data</td>
+    <td>31 Sep. 2025</td>
 {% elif data_type=="decision" %}
-    <td>Decision data</td>
+    <td>
+        <div class="data-cell-btns">
+            <button type="button" class="action-btn">
+                <i class='bx bx-check-circle accept' ></i>
+            </button>
+            <button type="button" class="action-btn">
+                <i class='bx bx-x-circle reject' ></i>
+            </button>
+        <div>
+    </td>
 {% endif %}
